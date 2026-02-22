@@ -1,70 +1,286 @@
-# Getting Started with Create React App
+# KHENLA E-commerce Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+KHENLA is a modern e-commerce platform specializing in computer products. This frontend application provides a seamless shopping experience with multi-language support (English, Khmer, Lao), secure authentication, and integrated payment processing.
+
+## Features
+
+### 🌟 Core Features
+- **Product Catalog** - Browse products with advanced filtering and sorting
+- **Shopping Cart** - Manage items, update quantities, calculate totals
+- **Secure Authentication** - JWT-based login/register system
+- **Multi-language Support** - English, Khmer, and Lao translations
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+
+### 🛍️ Shopping Experience
+- **Product Details** - Comprehensive product information with images
+- **Category Navigation** - Browse by categories and brands
+- **Search & Filters** - Find products by price, category, brand, and keywords
+- **Sorting Options** - Sort by price (low/high) and name (A-Z/Z-A)
+
+### 💳 Payment & Orders
+- **Multiple Payment Methods** - KHQR (Cambodia) and BCEL One (Laos)
+- **Payment Proof Upload** - Upload screenshots after QR payment
+- **Order History** - Track all orders with status updates
+- **Digital Receipts** - Download PDF receipts after payment confirmation
+- **Order Details** - View complete order information
+
+### 🔒 Security
+- **Protected Routes** - Authenticated access to checkout and orders
+- **Token Management** - Automatic token refresh and logout on expiration
+- **Secure API Calls** - Axios interceptors for consistent authentication
+
+## Technology Stack
+
+### Frontend
+- **React 18** - UI library
+- **React Router v6** - Navigation and routing
+- **Tailwind CSS** - Styling and responsive design
+- **Context API** - State management (Auth, Cart)
+
+### Libraries & Tools
+- **i18next** - Multi-language internationalization
+- **Axios** - HTTP client with interceptors
+- **jsPDF + autoTable** - PDF receipt generation
+- **React Hot Toast** - Notification system
+- **React Hooks** - Custom hooks (useDebounce)
+
+## Project Structure
+
+```
+khenla-frontend-user/
+├── public/                 # Static files
+├── src/
+│   ├── components/        # Reusable UI components
+│   │   ├── Navbar.js
+│   │   ├── Footer.js
+│   │   ├── ProductCard.js
+│   │   ├── CartItem.js
+│   │   ├── OrderSummary.js
+│   │   ├── LanguageSelector.js
+│   │   ├── PrivateRoute.js
+│   │   ├── ReceiptTemplate.js
+│   │   └── LoadingSpinner.js
+│   ├── pages/             # Page components
+│   │   ├── HomePage.js
+│   │   ├── ProductCatalog.js
+│   │   ├── ProductDetail.js
+│   │   ├── CartPage.js
+│   │   ├── CheckoutPage.js
+│   │   ├── OrderHistoryPage.js
+│   │   ├── OrderDetailPage.js
+│   │   ├── ReceiptPage.js
+│   │   ├── LoginPage.js
+│   │   └── RegisterPage.js
+│   ├── context/           # Context providers
+│   │   ├── AuthContext.js
+│   │   └── CartContext.js
+│   ├── services/          # API integration
+│   │   ├── api.js
+│   │   ├── auth.js
+│   │   ├── products.js
+│   │   ├── orders.js
+│   │   ├── payments.js
+│   │   └── receipt.js
+│   ├── hooks/             # Custom React hooks
+│   │   └── useDebounce.js
+│   ├── utils/             # Utility functions
+│   │   ├── constants.js
+│   │   └── receiptGenerator.js
+│   ├── i18n/              # Internationalization
+│   │   ├── i18n.js
+│   │   └── locales/
+│   │       ├── en.json
+│   │       ├── km.json
+│   │       └── lo.json
+│   ├── App.js             # Main app component
+│   ├── index.js           # Entry point
+│   └── index.css          # Global styles
+├── .env                    # Environment variables
+├── package.json            # Dependencies
+├── postcss.config.js       # PostCSS config
+├── tailwind.config.js      # Tailwind config
+└── README.md               # Documentation
+```
+
+## Installation
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+- Backend API server running (see backend documentation)
+
+### Setup Steps
+
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd khenla-frontend-user
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Configure environment variables**
+Create a `.env` file in the root directory:
+```env
+REACT_APP_API_URL=http://localhost:8000
+```
+
+4. **Start development server**
+```bash
+npm start
+```
+
+The app will be available at `http://localhost:3000`
 
 ## Available Scripts
 
-In the project directory, you can run:
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start development server |
+| `npm build` | Build for production |
+| `npm test` | Run tests |
+| `npm eject` | Eject from Create React App |
 
-### `npm start`
+## Environment Variables
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `REACT_APP_API_URL` | Backend API URL | `http://localhost:8000` |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Key Features Implementation
 
-### `npm test`
+### Authentication Flow
+1. User registers/logs in via `/login` or `/register`
+2. JWT token stored in localStorage
+3. Axios interceptor adds token to all requests
+4. Protected routes redirect to login if not authenticated
+5. Automatic logout on token expiration
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Shopping Cart
+- Cart state managed via Context API
+- Persistent storage in localStorage
+- Add/remove/update quantity operations
+- Real-time total calculation
 
-### `npm run build`
+### Multi-language Support
+- Language selection via dropdown
+- Translations stored in JSON files
+- Language persists across sessions
+- Product names and descriptions in selected language
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Checkout Process
+1. Review cart items
+2. Enter customer information
+3. Select payment method (KHQR/BCEL One)
+4. Upload payment proof screenshot
+5. Place order
+6. Redirect to order history
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Receipt Generation
+- PDF receipts generated client-side
+- Includes order details, items, and totals
+- Download button on paid orders
+- Print-friendly HTML view
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## API Integration
 
-### `npm run eject`
+The frontend communicates with the backend REST API:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/auth/register` | POST | User registration |
+| `/auth/login` | POST | User login |
+| `/auth/me` | GET | Current user info |
+| `/products/` | GET | List products |
+| `/products/{id}` | GET | Product details |
+| `/categories/` | GET | List categories |
+| `/brands/` | GET | List brands |
+| `/orders/` | POST | Create order |
+| `/orders/my` | GET | User orders |
+| `/payments/methods` | GET | Payment methods |
+| `/payments/orders/{id}/proof` | POST | Upload payment proof |
+| `/receipts/orders/{id}` | GET | Download receipt |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Styling with Tailwind CSS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The project uses Tailwind CSS for styling with a custom configuration:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```js
+// tailwind.config.js
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#2563eb',
+        secondary: '#4b5563',
+      }
+    },
+  },
+  plugins: [],
+}
+```
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Troubleshooting
 
-### Code Splitting
+### Common Issues
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Tailwind CSS not working**
+```bash
+npm run build:css
+# or reinstall Tailwind:
+npm install -D tailwindcss@3 postcss@8 autoprefixer@10
+npx tailwindcss init -p
+```
 
-### Analyzing the Bundle Size
+**API connection errors**
+- Verify backend server is running
+- Check `REACT_APP_API_URL` in `.env`
+- Check CORS configuration on backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Build errors**
+```bash
+rm -rf node_modules package-lock.json
+npm install
+npm start
+```
 
-### Making a Progressive Web App
+## Browser Support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
 
-### Advanced Configuration
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This project is proprietary and confidential.
 
-### Deployment
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Developer**: [Your Name]
+- **Email**: your.email@example.com
+- **Project Link**: [Repository URL]
 
-### `npm run build` fails to minify
+## Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React team for amazing framework
+- Tailwind CSS for utility-first styling
+- i18next for internationalization
+- All contributors and testers
+
+---
+
+**Note**: This frontend is designed to work with the KHENLA backend API. Ensure the backend server is running and properly configured before starting the frontend application.

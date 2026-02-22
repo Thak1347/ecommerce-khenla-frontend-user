@@ -1,0 +1,83 @@
+
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "orders": "My Orders",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "home": {
+    "hero": "Welcome to KHENLA",
+    "categories": "Categories",
+    "featured": "Featured Products"
+  },
+  "product": {
+    "addToCart": "Add to Cart",
+    "price": "Price",
+    "inStock": "In Stock",
+    "category": "Category",
+    "addedToCart": "Added to Cart Successfully!",
+    "brand": "Brand",
+    "description": "Description",
+    "outOfStock": "Out of Stock"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "remove": "Remove",
+    "quantity": "Qty",
+    "subtotal": "Subtotal",
+    "checkout": "Proceed to Checkout"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "customerInfo": "Customer Information",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "address": "Delivery Address",
+    "paymentMethod": "Payment Method",
+    "uploadProof": "Upload Payment Proof",
+    "placeOrder": "Place Order",
+    "orderSummary": "Order Summary"
+  },
+  "order": {
+    "status": {
+      "PENDING_PAYMENT": "Pending Payment",
+      "WAITING_VERIFY": "Waiting Verification",
+      "PAID": "Paid",
+      "PROCESSING": "Processing",
+      "SHIPPED": "Shipped",
+      "COMPLETED": "Completed",
+      "CANCELED": "Canceled"
+    },
+    "number": "Order #",
+    "date": "Date",
+    "total": "Total",
+    "downloadReceipt": "Download Receipt"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "filters": {
+    "title": "Filters",
+    "search": "Search products...",
+    "allCategories": "All Categories",
+    "allBrands": "All Brands",
+    "minPrice": "Min",
+    "maxPrice": "Max",
+    "priceRange": "Price Range",
+    "sortBy": "Sort by",
+    "priceLowToHigh": "Price: Low to High",
+    "priceHighToLow": "Price: High to Low",
+    "nameAToZ": "Name: A to Z",
+    "nameZToA": "Name: Z to A",
+    "clearFilters": "Clear Filters",
+    "activeFilters": "Active filters",
+    "noProducts": "No products found",
+    "tryAdjusting": "Try adjusting your filters or search term",
+    "productsFound": "products found"
+  }
+}
